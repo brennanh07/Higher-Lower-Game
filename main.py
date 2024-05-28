@@ -18,36 +18,47 @@ def calculate_higher(celeb1, celeb2):
         return "B"
 
 
-print(logo)
-print("Welcome to the Higher-Lower Game!")
-print("\nYou will be given two celebrities to compare, and you must guess which one has more Instagram followers.\n")
+def main():
 
-a_celeb = random.choice(data)
+    print(logo)
+    print("Welcome to the Higher-Lower Game!")
+    print("\nYou will be given two celebrities to compare, and you must guess which one has more Instagram followers.\n")
 
-play_game = True
+    a_celeb = random.choice(data)
 
-score = 0
+    play_game = True
 
-while play_game:
+    score = 0
 
-    b_celeb = random.choice(data)
-    while b_celeb == a_celeb:
+    while play_game:
+
         b_celeb = random.choice(data)
+        while b_celeb == a_celeb:
+            b_celeb = random.choice(data)
 
-    more_followers = calculate_higher(a_celeb, b_celeb)
+        more_followers = calculate_higher(a_celeb, b_celeb)
 
-    print(f"A: {a_celeb['name']}, a {a_celeb['description']} from {a_celeb['country']}.")
+        print(f"A: {a_celeb['name']}, a {a_celeb['description']} from {a_celeb['country']}.")
 
-    print(vs)
+        print(vs)
 
-    print(f"B: {b_celeb['name']}, a {b_celeb['description']} from {b_celeb['country']}.")
+        print(f"B: {b_celeb['name']}, a {b_celeb['description']} from {b_celeb['country']}.")
 
-    guess = input("\nWho has more followers? Type 'A' or 'B': ").upper()
+        guess = input("\nWho has more followers? Type 'A' or 'B': ").upper()
 
-    if guess == more_followers:
-        a_celeb = b_celeb
-        score += 1
-        print(f"That's correct! Current score: {score}.")
-    else:
-        print(f"Sorry, that's incorrect. Final score: {score}.")
-        play_game = False
+        if guess == more_followers:
+            a_celeb = b_celeb
+            score += 1
+            clear()
+            print(f"\nThat's correct! Current score: {score}.\n")
+        else:
+            print(f"\nSorry, that's incorrect. Final score: {score}.")
+            play_game = False
+
+    play_again = input("\nWould you like to play again? Type 'y' or 'n': ")
+    if play_again == "y":
+        main()
+
+
+main()
+
