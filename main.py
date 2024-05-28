@@ -1,6 +1,12 @@
 from game_data import data
 import random
-from os import system
+import os
+from art import logo
+from art import vs
+
+
+def clear():
+    os.system("cls")
 
 
 def calculate_higher(celeb1, celeb2):
@@ -12,8 +18,9 @@ def calculate_higher(celeb1, celeb2):
         return "B"
 
 
+print(logo)
 print("Welcome to the Higher-Lower Game!")
-print("You will be given two celebrities to compare, and you must guess which one has more Instagram followers.")
+print("\nYou will be given two celebrities to compare, and you must guess which one has more Instagram followers.\n")
 
 a_celeb = random.choice(data)
 
@@ -28,15 +35,14 @@ while play_game:
         b_celeb = random.choice(data)
 
     more_followers = calculate_higher(a_celeb, b_celeb)
-    print(more_followers)
 
-    print(f"A: {a_celeb["name"]}, a {a_celeb["description"]} from {a_celeb["country"]}.")
+    print(f"A: {a_celeb['name']}, a {a_celeb['description']} from {a_celeb['country']}.")
 
-    print(f"B: {b_celeb["name"]}, a {b_celeb["description"]} from {b_celeb["country"]}.")
+    print(vs)
 
-    guess = input("Who has more followers? Type 'A' or 'B': ").upper()
+    print(f"B: {b_celeb['name']}, a {b_celeb['description']} from {b_celeb['country']}.")
 
-    system("cls")
+    guess = input("\nWho has more followers? Type 'A' or 'B': ").upper()
 
     if guess == more_followers:
         a_celeb = b_celeb
@@ -45,6 +51,3 @@ while play_game:
     else:
         print(f"Sorry, that's incorrect. Final score: {score}.")
         play_game = False
-
-
-
